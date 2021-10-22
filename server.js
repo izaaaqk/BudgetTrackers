@@ -7,21 +7,22 @@ const PORT = 3000;
 
 const app = express();
 
-app.use(logger("dev"));
-app.use(compression());
+app.use(logger);
+app.use(compression);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public"));
 
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/budget",
+    process.env.MONGODB_URI || 'mongodb://localhost/deep-thoughts',
     {
-  useNewUrlParser: true,
-  userUnifiedTopology: true,
-  userCreateIndex: true,
-  useFindAndModify: false
-})
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false
+    }
+)
     .then(() => console.log('connected to mongoDB'))
     .catch(e => console.log(e));
 
