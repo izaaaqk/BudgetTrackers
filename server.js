@@ -15,9 +15,11 @@ app.use(express.json());
 app.use(express.static("public"));
 
 mongoose.connect(
-    "mongodb://localhost/budget",
+    process.env.MONGODB_URI || "mongodb://localhost/budget",
     {
   useNewUrlParser: true,
+  userUnifiedTopology: true,
+  userCreateIndex: true,
   useFindAndModify: false
 })
     .then(() => console.log('connected to mongoDB'))
